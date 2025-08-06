@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,9 @@ Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::put('posts/{post}', [PostController::class, 'update'])->name('posts.update');
 Route::delete('posts/delete/{post}', [PostController::class, 'delete'])->name('posts.destroy');
+
+
+Route::get('login', [AuthController::class, 'loginForm'])->name('login');
+Route::get('register', [AuthController::class, 'registerForm'])->name('register');
+Route::post('login', [AuthController::class, 'login'])->name('login.request');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout.request');

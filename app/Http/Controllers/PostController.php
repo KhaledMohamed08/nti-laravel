@@ -14,6 +14,8 @@ class PostController extends Controller
         // $posts = Post::where('is_active', true)->get();
         $posts = Post::all();
         // dd($posts);
+        $posts->load('category');
+        // dd($posts);
 
         // return view('posts.index', ['posts' => $posts]);
         return view('posts.index', compact('posts'));
@@ -23,6 +25,7 @@ class PostController extends Controller
     {
         // $post = Post::where('id', $id)->first();
         $post = Post::find($id);
+        $post->load('category', 'tags');
 
         return view('posts.show', compact('post'));
     }
