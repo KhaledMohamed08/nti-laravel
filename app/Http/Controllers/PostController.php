@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -47,9 +48,9 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'post created successfully.');
     }
 
-    public function edit(int $id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
 
         return view('posts.edit', compact('post'));
     }

@@ -2,16 +2,18 @@
 @section('title', 'Show')
 @section('content')
     <article class="post m-5">
-        <div class="actions text-end">
-            <a class="btn btn-success me-1 btn-sm" href="{{ route('posts.edit', $post->id) }}"><i
-                    class="bi bi-pencil-square"></i></a>
-            {{-- <a class="btn btn-danger ms-1 btn-sm" href="{{ route('posts.destroy', $post->id) }}"><i class="bi bi-trash-fill"></i></a> --}}
-            <form id="delete-form" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger ms-1 btn-sm" type="button"><i class="bi bi-trash-fill"></i></button>
-            </form>
-        </div>
+        @can('update', $post)
+            <div class="actions text-end">
+                <a class="btn btn-success me-1 btn-sm" href="{{ route('posts.edit', $post->id) }}"><i
+                        class="bi bi-pencil-square"></i></a>
+                {{-- <a class="btn btn-danger ms-1 btn-sm" href="{{ route('posts.destroy', $post->id) }}"><i class="bi bi-trash-fill"></i></a> --}}
+                <form id="delete-form" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger ms-1 btn-sm" type="button"><i class="bi bi-trash-fill"></i></button>
+                </form>
+            </div>
+        @endcan
         <div class="title text-center">
             <h2>{{ $post->title }}</h2>
         </div>
