@@ -10,22 +10,23 @@ class ProductController extends Controller
     public function index()
     {
         // $products = Product::all();
-        $products = Product::where('stock', '>', 0)->get();
+        $products = Product::where('stock', '>', 0)->with('user')->get();
 
-        return view('products.products', ['products' => $products]);
+        return view('pages.products.products', ['products' => $products]);
     }
 
     public function show($id)
     {
         // $product = Product::where('id', $id)->first();
         $product = Product::find($id);
+        $product->load('user');
 
-        return view('products.show', ['product' => $product]);
+        return view('pages.products.show', ['product' => $product]);
     }
 
     public function create()
     {
-        return view('products.create');
+        return view('pages.products.create');
     }
 
     public function store(Request $request)
@@ -48,7 +49,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('products.edit', ['product' => $product]);
+        return view('pages.products.edit', ['product' => $product]);
     }
 
     public function update(Request $request, $id)
