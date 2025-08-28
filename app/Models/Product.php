@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'colors_products');
+    }
 }

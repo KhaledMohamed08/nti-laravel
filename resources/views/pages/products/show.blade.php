@@ -4,7 +4,8 @@
     <div class="card mx-auto" style="max-width: 600px;">
         <div class="actions mt-4 ms-3">
             {{-- <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a> --}}
-            <x-ui.link-btn class="btn-sm" link="{{ route('products.edit', $product->id) }}" color="success"><i class="bi bi-pencil-square"></i></x-ui.link-btn>
+            <x-ui.link-btn class="btn-sm" link="{{ route('products.edit', $product->id) }}" color="success"><i
+                    class="bi bi-pencil-square"></i></x-ui.link-btn>
             {{-- <form class="d-inline" action="{{ route('products.delete', $product->id) }}" method="POST">
                 @method('DELETE')
                 @csrf
@@ -20,6 +21,14 @@
             <h4 class="text-primary">${{ $product->price }}</h4>
             <h4 class="text-secondary">Size: {{ $product->size }}</h4>
             <p class="text-secondary">User: <strong>{{ $product->user->name }}</strong></p>
+            @if (count($product->colors) > 0)
+                <p class="text-secondary">Colors</p>
+                <ul class="list-group">
+                    @foreach ($product->colors as $color)
+                        <li class="list-group-item">{{ $color->name }}</li>
+                    @endforeach
+                </ul>
+            @endif
 
             <a href="{{ route('products.index') }}" class="btn btn-secondary mt-3">Back to Products</a>
         </div>

@@ -48,6 +48,16 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="exampleInputSize" class="form-label">Product Color</label>
+            <select class="form-select" multiple name="colors[]" aria-label="Default select example" id="exampleInputSize">
+                <option selected disabled>Product Color</option>
+                @foreach ($colors as $color)
+                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
